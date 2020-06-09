@@ -1149,7 +1149,7 @@ private:
 				vkCmdBindVertexBuffers(commandBuffers[i], 0, 1, vertexBuffers, offsets);
 				vkCmdBindIndexBuffer(commandBuffers[i], indexBuffer, 0, VK_INDEX_TYPE_UINT16);
 
-				vkCmdDraw(commandBuffers[i], static_cast<uint32_t>(indices.size()), 1, 0, 0);
+				vkCmdDrawIndexed(commandBuffers[i], static_cast<uint32_t>(indices.size()), 1, 0, 0, 0);
 
 			vkCmdEndRenderPass(commandBuffers[i]);
 

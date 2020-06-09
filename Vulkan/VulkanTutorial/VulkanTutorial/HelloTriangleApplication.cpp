@@ -593,8 +593,6 @@ private:
 		}
 		else {
 			createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
-			createInfo.queueFamilyIndexCount = 0; // Optional
-			createInfo.pQueueFamilyIndices = nullptr; // Optional
 		}
 
 		// Do not allow transformations of the image in the swapchain
@@ -605,7 +603,7 @@ private:
 		createInfo.presentMode = presentMode;
 		createInfo.clipped = VK_TRUE;
 
-		createInfo.oldSwapchain = VK_NULL_HANDLE;
+		//createInfo.oldSwapchain = VK_NULL_HANDLE;
 
 		// Create swap chain
 		if (vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapChain) != VK_SUCCESS) {
@@ -631,6 +629,8 @@ private:
 		}
 
 		vkDeviceWaitIdle(device);
+
+		cleanupSwapChain();
 
 		createSwapChain();
 		createImageViews();
@@ -1119,6 +1119,8 @@ private:
 		vkWaitForFences(device, 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 
 		uint32_t imageIndex;
+
+		// For swapchain recreation due to resizing
 		VkResult result = vkAcquireNextImageKHR(
 			device, swapChain, UINT64_MAX, imageAvailableSemaphores[currentFrame],
 			VK_NULL_HANDLE, &imageIndex
@@ -1139,7 +1141,6 @@ private:
 		{
 			vkWaitForFences(device, 1, &imagesInFlight[imageIndex], VK_TRUE, UINT64_MAX);
 		}
-
 		// Mark the image as now being in use by this frame
 		imagesInFlight[imageIndex] = inFlightFences[currentFrame];
 

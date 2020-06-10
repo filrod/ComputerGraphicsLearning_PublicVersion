@@ -90,7 +90,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.135.0\Include;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glm;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\stb;C:\VulkanSDK\1.2.135.0\Include;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glm;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.135.0\Include;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glm;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\stb;C:\VulkanSDK\1.2.135.0\Include;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glm;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
@@ -128,7 +128,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.135.0\Include;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glm;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\stb;C:\VulkanSDK\1.2.135.0\Include;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glm;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
@@ -149,7 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.135.0\Include;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glm;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\stb;C:\VulkanSDK\1.2.135.0\Include;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glm;C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>

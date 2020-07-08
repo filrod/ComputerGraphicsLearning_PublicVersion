@@ -1,8 +1,8 @@
 #pragma once
-#include "hittable.h"
+#include "hitable.h"
 
 
-class sphere : public hittable
+class sphere : public hitable
 {
 public:
 	point3 center;
@@ -13,10 +13,10 @@ public:
 	sphere(point3 center, float radius, std::shared_ptr<material> material_ptr)
 		: center(center), radius(radius), material_ptr(material_ptr) {}
 	
-	virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec);
+	virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec) const;
 };
 
-bool sphere::hit(const ray& r, float t_min, float t_max, hitInfo& info) 
+bool sphere::hit(const ray& r, float t_min, float t_max, hitInfo& info) const
 {
 	vec3 oc = r.get_origin() - center;
 	auto a = dot(r.get_direction(), r.get_direction());

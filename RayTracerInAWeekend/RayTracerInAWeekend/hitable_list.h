@@ -1,13 +1,22 @@
 #pragma once
-
+#include <vector>
+#include <memory>
 #include "hitable.h"
+
+using std::shared_ptr;
+using std::make_shared;
+
 class hitable_list : public hitable
 {
 public:
-	hitable** list;
-	int size;
+	std::vector < shared_ptr < hitable >> hitables;
 	hitable_list() {}
-	hitable_list(hitable** list, int size):list(list), size(size) {}
+	hitable_list(shared_ptr<hitable> object)
+	{
+		add(object);
+	}
+	void add(shared_ptr<hitable> object) { hitables.push_back(object); }
+	void clear() { hitables.clear(); }
 
 	virtual bool hit(const ray&, float t_min, float t_max, hitInfo& info) const;
 };
@@ -18,9 +27,9 @@ bool hitable_list::hit(const ray& r, float t_min, float t_max, hitInfo& info) co
 	bool hitSomething = false;
 	float closest_so_far = t_max;
 
-	for (int i = 0; i < hitable_list::size; i++)
+	for (const auto& object : hitables)
 	{
-		if (list[i]->hit(r, t_min, closest_so_far, tmpInfo))
+		if (object->hit(r, t_min, closest_so_far, tmpInfo))
 		{
 			hitSomething = true;
 			closest_so_far = tmpInfo.t;

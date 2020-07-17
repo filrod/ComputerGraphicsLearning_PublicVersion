@@ -184,7 +184,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileHandler.h" />
-    <ClInclude Include="hittable.h" />
+    <ClInclude Include="hitable_list.h" />
+    <ClInclude Include="hitable.h" />
     <ClInclude Include="ray.h" />
     <ClInclude Include="sphere.h" />
     <ClInclude Include="vec3.h" />

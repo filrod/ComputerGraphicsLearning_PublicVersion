@@ -19,8 +19,8 @@ struct hitInfo
 	}
 };
 
-class hittable
+class hitable
 {
 	public:
-		virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec) = 0;
+		virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec) const = 0;
 };

@@ -21,7 +21,10 @@ inline float randf(float min, float max)
 
 inline float clamp(float x, float min, float max) 
 {
-	float returnVal = (x < min) ? min : x;
-	returnVal = (x > max) ? max : x;
-	return returnVal;
+	//float returnVal = (x < min) ? min : x;
+	//returnVal = (x > max) ? max : x;
+	//return returnVal;
+    if (x < min) return min;
+    if (x > max) return max;
+    return x;
 }

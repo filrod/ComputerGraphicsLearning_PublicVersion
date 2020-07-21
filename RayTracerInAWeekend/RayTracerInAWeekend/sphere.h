@@ -13,7 +13,7 @@ public:
 	sphere(point3 center, float radius, std::shared_ptr<material> material_ptr)
 		: center(center), radius(radius), material_ptr(material_ptr) {}
 	
-	virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec) const;
+	virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec) const override;
 };
 
 bool sphere::hit(const ray& r, float t_min, float t_max, hitInfo& info) const

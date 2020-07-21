@@ -18,7 +18,7 @@ public:
 	void add(shared_ptr<hitable> object) { hitables.push_back(object); }
 	void clear() { hitables.clear(); }
 
-	virtual bool hit(const ray&, float t_min, float t_max, hitInfo& info) const;
+	virtual bool hit(const ray&, float t_min, float t_max, hitInfo& info) const override;
 };
 
 bool hitable_list::hit(const ray& r, float t_min, float t_max, hitInfo& info) const

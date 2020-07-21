@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <sys/stat.h>
+#include "RayTracerInAWeekend.h"
 
 inline bool fileExists(const std::string& fName)
 {
@@ -26,4 +27,14 @@ inline void ClearFile(const std::string& fName)
 		f << "";
 		f.close();
 	}
+}
+
+inline std::string WriteColor(ColorRGB pixelColor)
+{
+    int ir = static_cast<int>(255.99 * clamp(pixelColor.r(), 0.0f, 0.999f));
+    int ig = static_cast<int>(255.99 * clamp(pixelColor.g(), 0.0f, 0.999f));
+    int ib = static_cast<int>(255.99 * clamp(pixelColor.b(), 0.0f, 0.999f));
+
+    //std::cout << ir << " " << ig << " " << ib << "\n";
+    return "" + std::to_string(ir) + " " + std::to_string(ig) + " " + std::to_string(ib);
 }

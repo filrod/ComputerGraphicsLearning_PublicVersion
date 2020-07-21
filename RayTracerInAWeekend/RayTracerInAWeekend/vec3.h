@@ -2,6 +2,7 @@
 #include <math.h>
 #include <iostream>
 #include <stdlib.h>
+#include "RayTracerInAWeekend.h"
 
 class vec3
 {
@@ -102,8 +103,28 @@ public:
 		e[1] *= k;
 		e[2] *= k;
 	}
-	
+
+    inline static vec3 Random()
+    {
+        return vec3(randf(), randf(), randf());
+    }
+
+    inline static vec3 Random(float min, float max)
+    {
+        return vec3(randf(min, max), randf(min, max), randf(min, max));
+    }
+
+    
 }; 
+
+vec3 randPointInUnitSphere()
+{
+    while (true)
+    {
+        auto p = vec3::Random(-1, 1);
+        if (p.squared_length() < 1) return p;
+    }
+}
 
 using point3 = vec3;
 using ColorRGB = vec3;

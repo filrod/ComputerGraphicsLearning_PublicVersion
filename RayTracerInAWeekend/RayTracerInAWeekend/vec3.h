@@ -2,6 +2,7 @@
 #include <math.h>
 #include <iostream>
 #include <stdlib.h>
+#include "UtilityFunctions.h"
 #include "RayTracerInAWeekend.h"
 
 class vec3
@@ -126,6 +127,16 @@ vec3 randPointInUnitSphere()
     }
 }
 
+vec3 randUintVec() 
+{
+    auto a = randf(0.f, 2 * 3.14159f);
+    auto z = randf(-1.f, 1.f);
+    auto r = sqrt(1-z*z);
+    return vec3(r*std::cosf(a), r*std::sinf(a), z);
+}
+
+
+
 using point3 = vec3;
 using ColorRGB = vec3;
 
@@ -133,6 +144,19 @@ inline float dot(const vec3& v1, const vec3& v2)
 {
 	float k = v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
 	return k;
+}
+
+vec3 randPBRScatter(const vec3& normal)
+{
+    vec3 ptInUnitSphere = randPointInUnitSphere();
+    if (dot(ptInUnitSphere, normal) > 0.0) // in the same hemisphere as the normal
+    {
+        return ptInUnitSphere;
+    }
+    else
+    {
+        return -ptInUnitSphere;
+    }
 }
 
 inline vec3 cross(const vec3& v, const vec3& u)
@@ -146,6 +170,10 @@ inline vec3 operator*(float t, const vec3 &v) {
 
 inline vec3 operator*(const vec3 &v, float t) {
 	return vec3(t*v.e[0], t*v.e[1], t*v.e[2]);
+}
+
+inline vec3 operator*(const vec3 &u, const vec3 &v) {
+    return vec3(u[0] * v[0], u[1] * v[1], u[2] * v[2]);
 }
 
 inline vec3 operator/(float t, const vec3 &v) {

@@ -1,14 +1,14 @@
 #pragma once
-#include "vec3.h"
+#include "RayTracerInAWeekend.h"
 #include "ray.h"
 
-class material;
+class Material;
 
 struct hitInfo
 {
 	point3 p;
 	vec3 normal;
-	std::shared_ptr<material> material_ptr;
+	std::shared_ptr<Material> material_ptr;
 	float t;
 	bool isFrontFace;
 

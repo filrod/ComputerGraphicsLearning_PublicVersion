@@ -1,5 +1,6 @@
 #pragma once
 #include "hitable.h"
+#include "vec3.h"
 
 
 class sphere : public hitable
@@ -7,10 +8,10 @@ class sphere : public hitable
 public:
 	point3 center;
 	float radius;
-	std::shared_ptr<material> material_ptr;
+	std::shared_ptr<Material> material_ptr;
 
 	sphere() {}
-	sphere(point3 center, float radius, std::shared_ptr<material> material_ptr)
+	sphere(point3 center, float radius, std::shared_ptr<Material> material_ptr)
 		: center(center), radius(radius), material_ptr(material_ptr) {}
 	
 	virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec) const override;

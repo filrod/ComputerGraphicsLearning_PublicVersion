@@ -1,7 +1,17 @@
 #pragma once
 
-#include <cstdlib>
-
+#include <iostream>
+#include "ray.h"
+#include "sphere.h"
+#include "hitable_list.h"
+#include "FileHandler.h"
+#include "RayTracerInAWeekend.h"
+#include "Camera.h"
+#include "vec3.h"
+#include "Material.h"
+#include "UtilityFunctions.h"
+// #include <cstdlib>
+// #include <limits>
 
 struct window
 {
@@ -9,22 +19,9 @@ struct window
 	float pixelProgressY;
 };
 
-inline float randf()
-{
-	return rand() / (RAND_MAX + 1.0f);
-}
-
-inline float randf(float min, float max)
-{
-	return min + (max - min)*randf();
-}
-
-inline float clamp(float x, float min, float max) 
-{
-	//float returnVal = (x < min) ? min : x;
-	//returnVal = (x > max) ? max : x;
-	//return returnVal;
-    if (x < min) return min;
-    if (x > max) return max;
-    return x;
-}
+// enum Render_OPTIONS
+// {
+//     RANDOM_UINT_SPHERE_DIFFUSE,
+//     LAMBERTIAN_DIFFUSE,
+//     PBR_HEMISPHERICAL_SCATTERING
+// };

@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sys/stat.h>
 #include "RayTracerInAWeekend.h"
+#include "vec3.h"
 
 inline bool fileExists(const std::string& fName)
 {
@@ -41,9 +42,9 @@ inline std::string WriteColor(ColorRGB pixelColor, int samplesPerPixel)
     g = sqrt(scale * g);
     b = sqrt(scale * b);
 
-    int ir = static_cast<int>(255.99 * clamp(pixelColor.r(), 0.0f, 0.999f));
-    int ig = static_cast<int>(255.99 * clamp(pixelColor.g(), 0.0f, 0.999f));
-    int ib = static_cast<int>(255.99 * clamp(pixelColor.b(), 0.0f, 0.999f));
+    int ir = static_cast<int>(255.99 * clamp(r, 0.0f, 0.999f));
+    int ig = static_cast<int>(255.99 * clamp(g, 0.0f, 0.999f));
+    int ib = static_cast<int>(255.99 * clamp(b, 0.0f, 0.999f));
 
     //std::cout << ir << " " << ig << " " << ib << "\n";
     return "" + std::to_string(ir) + " " + std::to_string(ig) + " " + std::to_string(ib);

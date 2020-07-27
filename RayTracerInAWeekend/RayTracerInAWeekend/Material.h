@@ -23,7 +23,7 @@ public:
     Lambertian(const ColorRGB& a) : albedo(a) {}
     virtual bool Scatter(const ray& incidentRay, const hitInfo& info, ColorRGB& attenuation, ray& scatteredRay) const override
     {
-        Render_OPTIONS renderOption = PBR_HEMISPHERICAL_SCATTERING;
+        Render_OPTIONS renderOption = RANDOM_UINT_SPHERE_DIFFUSE;
         vec3 scatterDir = info.normal;
         switch (renderOption) {
         case RANDOM_UINT_SPHERE_DIFFUSE:
@@ -56,5 +56,22 @@ public:
         scatteredRay = ray(info.p, reflected + fuzz*randPointInUnitSphere());
         attenuation = albedo;
         return (dot(scatteredRay.get_direction(), info.normal) > 0);
+    }
+};
+
+class Dielectric : public Material
+{
+public:
+    float refractionIndex;
+    Dielectric(float refractionIndex) :refractionIndex(refractionIndex){}
+    virtual bool Scatter(const ray& incidentRay, const hitInfo& info, ColorRGB& attenuation, ray& scatteredRay) const override
+    {
+        attenuation = ColorRGB(1.f, 1.f, 1.f);
+        float refractionIndexRatio = info.isFrontFace ? (1.f / refractionIndex) : refractionIndex;
+        vec3 dirNormalized = incidentRay.get_direction();
+        dirNormalized.normalize();
+        vec3 refracted = Refract(dirNormalized, info.normal, refractionIndexRatio);
+        scatteredRay = ray(info.p, refracted);
+        return true;
     }
 };

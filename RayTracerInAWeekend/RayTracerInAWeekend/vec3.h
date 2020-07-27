@@ -159,6 +159,7 @@ vec3 randPBRScatter(const vec3& normal)
     }
 }
 
+
 inline vec3 cross(const vec3& v, const vec3& u)
 {
 	return vec3(v[1] * u[2] - u[1] * v[2], v[2] * u[0] - v[0] * u[2], v[0] * u[1] - u[0] * v[1]);
@@ -209,4 +210,11 @@ inline std::ostream& operator<<(std::ostream& os, const vec3 &v)
 {
 	os << v.e[0] << " " << v.e[1] << " " << v.e[2];
 	return os;
+}
+
+vec3 Refract(const vec3& inRay, const vec3& n, float refractionIndexRatio)
+{
+    vec3 refractedPerp = refractionIndexRatio * (inRay + dot(-inRay, n) * n);
+    vec3 refractedParallel = -sqrt(abs(1.0f - refractedPerp.squared_length()))*n;
+    return refractedPerp + refractedParallel;
 }

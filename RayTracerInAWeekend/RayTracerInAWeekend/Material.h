@@ -70,6 +70,16 @@ public:
         float refractionIndexRatio = info.isFrontFace ? (1.f / refractionIndex) : refractionIndex;
         vec3 dirNormalized = incidentRay.get_direction();
         dirNormalized.normalize();
+
+        float projMag = dot(-dirNormalized, info.normal);
+
+        if (refractionIndexRatio * sqrt(1- projMag * projMag) > 1.f)
+        {
+            vec3 reflected = reflect(dirNormalized, info.normal);
+            scatteredRay = ray(info.p, reflected);
+            return true;
+        }
+
         vec3 refracted = Refract(dirNormalized, info.normal, refractionIndexRatio);
         scatteredRay = ray(info.p, refracted);
         return true;

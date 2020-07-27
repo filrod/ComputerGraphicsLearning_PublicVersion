@@ -71,9 +71,17 @@ public:
         vec3 dirNormalized = incidentRay.get_direction();
         dirNormalized.normalize();
 
-        float projMag = dot(-dirNormalized, info.normal);
+        float projMag = fmin(dot(-dirNormalized, info.normal), 1.f);
 
         if (refractionIndexRatio * sqrt(1- projMag * projMag) > 1.f)
+        {
+            vec3 reflected = reflect(dirNormalized, info.normal);
+            scatteredRay = ray(info.p, reflected);
+            return true;
+        }
+
+        float reflectionProbe = SchlickFresnelApproximation(projMag, refractionIndexRatio);
+        if (randf() < reflectionProbe)
         {
             vec3 reflected = reflect(dirNormalized, info.normal);
             scatteredRay = ray(info.p, reflected);

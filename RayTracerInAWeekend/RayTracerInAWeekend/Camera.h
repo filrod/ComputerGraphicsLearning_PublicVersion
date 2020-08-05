@@ -9,6 +9,8 @@ struct ViewportInfo
 	float width;
 };
 
+inline float DegToRad(float degrees) { return degrees * 3.14159f / 180.0f; }
+
 class Camera
 {
 private:
@@ -18,11 +20,12 @@ private:
 	vec3 vertical;
 
 public:
-	Camera()
+	Camera(float vFOV, float DAR)
 	{
-		auto DAR = 16.0f / 9.0f;
+        float theta = DegToRad(vFOV);
+        float h = std::tan(theta/2.f);
 		ViewportInfo viewportInfo;
-		viewportInfo.height = 2.0f;
+		viewportInfo.height = 2.0f*h;
 		viewportInfo.width = DAR * viewportInfo.height;
 		auto focalLength = 1.0f;
 

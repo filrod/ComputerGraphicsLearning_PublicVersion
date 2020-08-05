@@ -66,29 +66,42 @@ public:
     Dielectric(float refractionIndex) :refractionIndex(refractionIndex){}
     virtual bool Scatter(const ray& incidentRay, const hitInfo& info, ColorRGB& attenuation, ray& scatteredRay) const override
     {
-        attenuation = ColorRGB(1.f, 1.f, 1.f);
-        float refractionIndexRatio = info.isFrontFace ? (1.f / refractionIndex) : refractionIndex;
-        vec3 dirNormalized = incidentRay.get_direction();
-        dirNormalized.normalize();
+//         attenuation = ColorRGB(1.f, 1.f, 1.f);
+//         float refractionIndexRatio = info.isFrontFace ? (1.f / refractionIndex) : refractionIndex;
+//         vec3 dirNormalized = incidentRay.get_direction();
+//         dirNormalized.normalize();
+// 
+//         float projMag = fmin(dot(-dirNormalized, info.normal), 1.f);
+//         float reflectionProbe = SchlickFresnelApproximation(projMag, refractionIndexRatio);
+// 
+//         if ( ( refractionIndexRatio * sqrt(1- projMag * projMag) > 1.f ) ||  (randf() < reflectionProbe) )
+//         {
+//             vec3 reflected = reflect(dirNormalized, info.normal);
+//             scatteredRay = ray(info.p, reflected);
+//             return true;
+//         }
+// 
+//         vec3 refracted = Refract(dirNormalized, info.normal, refractionIndexRatio);
+//         scatteredRay = ray(info.p, refracted);
+//         return true;
 
-        float projMag = fmin(dot(-dirNormalized, info.normal), 1.f);
+        // online code
+        attenuation = ColorRGB(1.0f, 1.0f, 1.0f);
+        float etai_over_etat = info.isFrontFace ? (1.0f / refractionIndex) : refractionIndex;
 
-        if (refractionIndexRatio * sqrt(1- projMag * projMag) > 1.f)
-        {
-            vec3 reflected = reflect(dirNormalized, info.normal);
+        vec3 unit_direction = incidentRay.get_direction() / incidentRay.get_direction().length();
+        float cos_theta = fmin(dot(-unit_direction, info.normal), 1.0f);
+        float sin_theta = sqrt(1.0f - cos_theta * cos_theta);
+
+        if ((etai_over_etat * sin_theta > 1.0f)
+            || (randf() < SchlickFresnelApproximation(cos_theta, etai_over_etat))
+            ) {
+            vec3 reflected = reflect(unit_direction, info.normal);
             scatteredRay = ray(info.p, reflected);
             return true;
         }
 
-        float reflectionProbe = SchlickFresnelApproximation(projMag, refractionIndexRatio);
-        if (randf() < reflectionProbe)
-        {
-            vec3 reflected = reflect(dirNormalized, info.normal);
-            scatteredRay = ray(info.p, reflected);
-            return true;
-        }
-
-        vec3 refracted = Refract(dirNormalized, info.normal, refractionIndexRatio);
+        vec3 refracted = Refract(unit_direction, info.normal, etai_over_etat);
         scatteredRay = ray(info.p, refracted);
         return true;
     }

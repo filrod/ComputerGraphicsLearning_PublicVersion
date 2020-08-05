@@ -214,7 +214,8 @@ inline std::ostream& operator<<(std::ostream& os, const vec3 &v)
 
 vec3 Refract(const vec3& inRay, const vec3& n, float refractionIndexRatio)
 {
-    vec3 refractedPerp = refractionIndexRatio * (inRay + dot(-inRay, n) * n);
-    vec3 refractedParallel = -sqrt(abs(1.0f - refractedPerp.squared_length()))*n;
+    auto cosineTerm = fmin(dot(-inRay, n), 1.0f);
+    vec3 refractedPerp = refractionIndexRatio * (inRay + cosineTerm * n);
+    vec3 refractedParallel = -sqrt(fabs(1.0f - refractedPerp.squared_length()))*n;
     return refractedPerp + refractedParallel;
 }
